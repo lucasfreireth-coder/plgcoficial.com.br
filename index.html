@@ -1,0 +1,235 @@
+<style>
+    /* Estilos Gerais */
+    :root { 
+        --gold: #d4af37; 
+        --dark: #0a0a0a; 
+        --card: #161616; 
+        --text-on-video: #ffffff;
+    }
+    body { 
+        margin: 0; 
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+        background: var(--dark); 
+        color: white; 
+        text-align: center; 
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+    
+    /* Container Principal do Header */
+    .header { 
+        position: relative;
+        width: 100%;
+        /* Altura máxima para o header para não esmagar o resto */
+        height: 80vh; 
+        max-height: 500px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        border-bottom: 4px solid var(--gold);
+        background: #000;
+    }
+
+    /* Vídeo de Fundo CORRIGIDO */
+    .video-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        /* Importante: Mantém a proporção e cobre, mas sem esticar */
+        object-fit: cover; 
+        z-index: 1;
+    }
+
+    /* Camada para escurecer o vídeo e destacar o texto */
+    .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        /* Aumentei um pouco a opacidade para melhor leitura */
+        background: rgba(0, 0, 0, 0.55); 
+        z-index: 2;
+    }
+
+    /* Conteúdo do Header (Textos) CORRIGIDO */
+    .header-content {
+        position: relative;
+        z-index: 3;
+        width: 90%;
+        max-width: 800px;
+        /* Adicionei um fundo semi-transparente leve para o texto */
+        background: rgba(0, 0, 0, 0.3);
+        padding: 20px;
+        border-radius: 10px;
+    }
+
+    /* Título PLGC 2026 AJUSTADO */
+    h1 { 
+        color: var(--gold); 
+        letter-spacing: 5px; 
+        margin: 0; 
+        font-size: 3.5rem; 
+        text-shadow: 0 0 25px rgba(212, 175, 55, 0.7); 
+        font-weight: 900; 
+        text-transform: uppercase;
+    }
+    
+    /* URL no Header */
+    .header-url {
+        color: var(--text-on-video); 
+        letter-spacing: 3px; 
+        font-weight: bold; 
+        margin-top: 10px; 
+        font-size: 1rem;
+        opacity: 0.9;
+    }
+
+    /* Container do Formulário */
+    .container { 
+        position: relative;
+        width: 90%;
+        max-width: 450px; 
+        /* Margem negativa menor para não sobrepor tanto o vídeo */
+        margin: -40px auto 50px; 
+        padding: 15px; 
+        z-index: 4; 
+    }
+    
+    /* Caixa do Formulário */
+    .box { 
+        background: var(--card); 
+        padding: 30px; 
+        border-radius: 15px; 
+        border: 1px solid #333; 
+        box-shadow: 0 15px 40px rgba(0,0,0,0.8); 
+    }
+    
+    /* Título do Formulário */
+    .form-title {
+        color: var(--gold); 
+        margin-top: 0; 
+        letter-spacing: 1px; 
+        text-transform: uppercase;
+        font-size: 1.2rem;
+    }
+
+    /* Estilos dos Campos */
+    label { 
+        display: block; 
+        text-align: left; 
+        color: var(--gold); 
+        font-size: 0.85rem; 
+        margin-bottom: 5px; 
+        font-weight: bold; 
+        letter-spacing: 1px; 
+        margin-top: 15px;
+        text-transform: uppercase;
+    }
+    input, textarea { 
+        width: 100%; 
+        padding: 15px; 
+        margin-bottom: 10px; 
+        background: #111; 
+        border: 1px solid #444; 
+        color: white; 
+        border-radius: 8px; 
+        box-sizing: border-box; 
+        font-size: 1rem;
+        font-family: inherit;
+    }
+    textarea {
+        resize: vertical; /* Permite redimensionar apenas na vertical */
+    }
+    
+    /* Botão Enviar */
+    .btn-submit { 
+        width: 100%; 
+        background: var(--gold); 
+        color: black; 
+        padding: 20px; 
+        border: none; 
+        font-weight: 900; 
+        text-transform: uppercase; 
+        border-radius: 8px; 
+        cursor: pointer; 
+        font-size: 1.2rem; 
+        margin-top: 20px; 
+        box-shadow: 0 5px 20px rgba(212, 175, 55, 0.4); 
+        transition: 0.3s ease;
+    }
+    .btn-submit:hover { 
+        background: #fff; 
+        transform: translateY(-3px); 
+        box-shadow: 0 8px 25px rgba(212, 175, 55, 0.6);
+    }
+    
+    /* Rodapé */
+    .footer { 
+        margin-top: auto; /* Empurra o rodapé para o final */
+        padding: 30px 0; 
+        color: #666; 
+        font-size: 0.8rem; 
+        border-top: 1px solid #222;
+        width: 100%;
+    }
+
+    /* Responsividade para Celulares */
+    @media (max-width: 600px) {
+        h1 {
+            font-size: 2.2rem;
+            letter-spacing: 3px;
+        }
+        .header {
+            height: 60vh;
+        }
+        .header-url {
+            font-size: 0.8rem;
+        }
+        .box {
+            padding: 20px;
+        }
+    }
+</style>
+
+<div class="header">
+    <video autoplay muted loop playsinline class="video-bg">
+        <source src="https://www.dropbox.com/scl/fi/shd6hplc57y8zd9biesal/gemini_generated_video_5e94a4f3.mp4?rlkey=ouon2fdjmp7tlvknlifjikff3&st=zszbw1n1&raw=1" type="video/mp4">
+        Seu navegador não suporta vídeos.
+    </video>
+    
+    <div class="overlay"></div>
+
+    <div class="header-content">
+        <h1>PLGC 2026</h1>
+        <p class="header-url">WWW.PLGCOFICIAL.COM.BR</p>
+    </div>
+</div>
+
+<div class="container">
+    <div class="box">
+        <h3 class="form-title">REQUERIMENTO DE INSCRIÇÃO</h3>
+        <form>
+            <label for="squadName">NOME DO SQUAD</label>
+            <input type="text" id="squadName" placeholder="Ex: Elite Team PUBG" required>
+            
+            <label for="captainId">ID DO CAPITÃO (PSN/XBOX)</label>
+            <input type="text" id="captainId" placeholder="Sua ID Oficial" required>
+            
+            <label for="lineup">LINE-UP COMPLETA (IDs)</label>
+            <textarea id="lineup" rows="5" placeholder="ID Jogador 1&#10;ID Jogador 2&#10;ID Jogador 3&#10;ID Jogador 4" required></textarea>
+            
+            <button type="submit" class="btn-submit">FINALIZAR INSCRIÇÃO</button>
+        </form>
+    </div>
+</div>
+
+<div class="footer">
+    ORGANIZAÇÃO: PLGC © 2026<br>
+    PUBG LEGIT GAMERS CONSOLE<br>
+    CONTATO: PLGC@OUTLOOK.COM.BR
+</div>
